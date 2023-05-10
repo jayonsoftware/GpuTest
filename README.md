@@ -1,2 +1,2 @@
-# GpuTest
-Example code to compare performance between your CPU and GPU https://ilgpu.net/
+
+Sample Code to Learn about GPU programing in C# using https://ilgpu.net/ 
