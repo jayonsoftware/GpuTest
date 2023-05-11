@@ -23,9 +23,9 @@ namespace Apex.CUDA
             //TestStart(100_000);
             //TestStart(1_000_000);
             //TestStart(10_000_000);
-            //TestStart(100_000_000);
+            TestStart(100_000_000);
             //TestStart(1_000_000_000);
-            TestStart(2_146_435_071);
+            //TestStart(2_146_435_071);
 
             Console.WriteLine("Done, Press any key to exit");
             Console.ReadKey();
@@ -47,7 +47,7 @@ namespace Apex.CUDA
             }
             else if (accTypes.Contains(AcceleratorType.Cuda))
             {
-                Console.WriteLine("{0,-20} {1,-20} {2,-20} {3,-20} {4,-20}", lengthString, SingleThread(length), Tpl(length), "N/A", CLA(length));
+                Console.WriteLine("{0,-20} {1,-20} {2,-20} {3,-20} {4,-20}", lengthString, SingleThread(length), Tpl(length), "N/A", CUDA(length));
             }
             else
             {
@@ -110,13 +110,13 @@ namespace Apex.CUDA
             stopwatch.Start();
 
             // Allocate memory on the accelerator.
-            var deviceOutput = accelerator.Allocate1D<long>(length);
+            var deviceOutput = accelerator.Allocate1D<double>(length);
 
             // Load / Compile the kernel. This is where the magic happens.
             var loadedKernel = accelerator.LoadAutoGroupedStreamKernel(
-            (Index1D i, ArrayView<long> output) =>
+            (Index1D i, ArrayView<double> output) =>
                 {
-                    output[i] = 5 * 5 * 5 * 5 * 5;
+                    output[i] = 5.2429049278429 * 5.2429049278429 * 5.2429049278429 * 5.2429049278429 * 5.2429049278429;
                 });
 
             // Tell the accelerator to start computing the kernel
@@ -137,11 +137,11 @@ namespace Apex.CUDA
             stopwatch.Start();
 
 
-            long[] output = new long[length];
+            double[] output = new double[length];
             Parallel.For(0, output.Length,
             (long i) =>
             {
-                output[i] = 5 * 5 * 5 * 5 * 5;
+                output[i] = 5.2429049278429 * 5.2429049278429 * 5.2429049278429 * 5.2429049278429 * 5.2429049278429;
             });
 
             return stopwatch.ElapsedMilliseconds.ToString("#,##0");
@@ -152,10 +152,10 @@ namespace Apex.CUDA
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            long[] output = new long[length];
-            for (long i = 0; i < output.Length; i++)
+            double[] output = new double[length];
+            for (int i = 0; i < output.Length; i++)
             {
-                output[i] = 5 * 5 * 5 * 5 * 5;
+                output[i] = 5.2429049278429 * 5.2429049278429 * 5.2429049278429 * 5.2429049278429 * 5.2429049278429;
             }
 
             return stopwatch.ElapsedMilliseconds.ToString("#,##0");
