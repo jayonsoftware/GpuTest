@@ -3,9 +3,8 @@ using ILGPU.Runtime;
 using ILGPU.Runtime.CPU;
 using ILGPU.Runtime.Cuda;
 using ILGPU.Runtime.OpenCL;
-using System;
 using System.Diagnostics;
-using System.Runtime.ConstrainedExecution;
+
 
 namespace Apex.CUDA
 {
@@ -23,7 +22,7 @@ namespace Apex.CUDA
             //TestStart(10_000);
             //TestStart(100_000);
             TestStart(1_000_000);
-            //TestStart(10_000_000);
+            TestStart(10_000_000);
             //TestStart(100_000_000);
             //TestStart(1_000_000_000);
             //TestStart(2_146_435_071);
