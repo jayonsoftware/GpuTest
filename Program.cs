@@ -14,17 +14,17 @@ namespace Apex.CUDA
         {
             //BottleNeckTest();
 
-            //PrintGpuDetails();
-            
+            PrintGpuDetails();
+
             Console.WriteLine("{0,-20} {1,-20} {2,-20} {3,-20} {4,-20}\n", "Length", "SingleThread", "TPL", "CLA", "CUDA");
             //TestStart(10);
             //TestStart(1_000);
             //TestStart(10_000);
             //TestStart(100_000);
-            TestStart(1_000_000);
-            TestStart(10_000_000);
+            //TestStart(1_000_000);
+            //TestStart(10_000_000);
             //TestStart(100_000_000);
-            //TestStart(1_000_000_000);
+            TestStart(1_000_000_000);
             //TestStart(2_146_435_071);
 
             Console.WriteLine("Done, Press any key to exit");
@@ -34,7 +34,7 @@ namespace Apex.CUDA
         public static void TestStart(long length)
         {
             var lengthString = length.ToString("#,##0");
-            
+
             Context con = Context.Create(builder => builder.AllAccelerators());
 
             // Get a list of all available accelerators (including the CPU/GPU)
@@ -65,7 +65,7 @@ namespace Apex.CUDA
         public static void PrintGpuDetails()
         {
             Context acceleratorContext = Context.Create(builder => builder.AllAccelerators());
-            
+
             foreach (var accelerator in acceleratorContext)
             {
                 Console.WriteLine($"Name: {accelerator.Name}");
@@ -78,9 +78,9 @@ namespace Apex.CUDA
                 Console.WriteLine($"NumMultiprocessors: {accelerator.NumMultiprocessors}");
                 Console.WriteLine();
             }
-            
+
         }
- 
+
         public static string CLA(long length)
         {
             String result = "";
